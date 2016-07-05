@@ -2,7 +2,7 @@
 * @Author: Vincent Wei
 * @Date:   2016-07-04 16:42:13
 * @Last Modified by:   Vincent Wei
-* @Last Modified time: 2016-07-04 16:53:08
+* @Last Modified time: 2016-07-05 16:55:05
 */
 
 'use strict';
@@ -11,16 +11,17 @@
 var http = require('http'),
     url = require('url');
 
-function start(route){
+function start(route, handle){
 
     // 回调函数
     function onRequest(request, response){
+
         // 获取pathname
         var pathname = url.parse(request.url).pathname;
         console.log('Request for' + pathname + ' received.');
 
         // 路由
-        route(pathname);
+        route(handle, pathname);
 
         response.writeHead(200, {'Content-Type': 'text/plain'});
         response.write('Hello World');
