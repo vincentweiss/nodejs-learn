@@ -2,15 +2,15 @@
 * @Author: Vincent Wei
 * @Date:   2016-07-04 16:38:20
 * @Last Modified by:   Vincent Wei
-* @Last Modified time: 2016-07-06 17:43:05
+* @Last Modified time: 2016-07-06 17:52:33
 */
 
 'use strict';
 
-function route(handle, pathname, response, postData){
+function route(handle, pathname, response, request){
     console.log('About to route a request for' + pathname);
     if (typeof handle[pathname] === 'function'){
-        handle[pathname](response, postData);
+        handle[pathname](response, request);
     }else{
         console.log('No request handler found for' + pathname);
         response.writeHead(404, {'Content-Type': 'text/plain'});
